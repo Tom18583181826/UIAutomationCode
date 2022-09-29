@@ -13,9 +13,9 @@ class SendMail(object):
             # 1.配置邮箱服务器信息
             host = "smtp.qq.com"  # 配置邮箱SMTP服务器的主机地址，将来使用这个服务器收发邮件
             # port = "465"  # 配置端口,默认的邮件端口是25，QQ邮箱的端口为465
-            sender = "1656663884@qq.com"  # 配置发件人
-            auth_code = "jdtyhajujffmgddg"  # 配置邮箱的授权码
-            receivers = "tom1509957150@163.com"  # 配置收件人，多个收件人可以使用分号或逗号隔开
+            sender = ""  # 配置发件人
+            auth_code = ""  # 配置邮箱的授权码
+            receivers = ""  # 配置收件人，多个收件人可以使用分号或逗号隔开
 
             # 2.创建邮件对象
             message = MIMEMultipart()  # 实例化邮箱对象，用来设置邮箱的发送信息

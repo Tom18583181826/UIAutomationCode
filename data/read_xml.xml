@@ -1,0 +1,15 @@
+<info>
+    <platforms>
+        <platform>Windows</platform>
+        <platform>Linux</platform>
+        <platform>MacOS</platform>
+    </platforms>
+    <browsers>
+        <browser>Chrome</browser>
+        <browser>Firefox</browser>
+        <browser>Edge</browser>
+    </browsers>
+    <url>https://www.baidu.com</url>
+    <login username="Tom" password="123456"/>
+    <login username="Jerry" password="654321"/>
+</info>

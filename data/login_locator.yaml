@@ -1,0 +1,18 @@
+#yaml语法规则：
+# 1.大小写敏感
+# 2.使用缩进表示层级关系，缩进时不允许使用Tab键，只允许使用空格
+# 3.缩进的空格数目不重要，只要相同层级的元素左侧对齐即可
+# 4.“#”表示注释
+# 5.列表；用短划（”-“，后有空格）标记元素
+# 6.映射：用冒号（“：”，后有空格）分割key,value，如果写在一行，需要用逗号分隔并前后加花括号
+# 7.字符串：不加引号，加单引号或者双引号都可以，加双引号时可以使用\开头的转义字符
+#   多行字符串可以用|或>符号，紧接着换行符
+# 8.重复的节点，可以用&表示，并用*来引用
+Login:
+  ACCOUNTLOGIN: class,usertop
+  USERNAME: x,//*[@id="app"]/div/div/div[2]/div/div/div[2]/div[2]/input
+  PWD: x,//*[@id="app"]/div/div/div[2]/div/div/div[3]/div[2]/input
+  VERIFY: x,//*[@id="app"]/div/div/div[2]/div/div/div[4]/div[2]/input
+  SUBMIT: x,//*[@id="app"]/div/div/div[2]/div/div/button
+  SUCCESSTEXT: x,//*[@id="app"]/section/section/section/div[2]/header/div[2]/span/span/span
+  FAILED: x,//*[@id="app"]/div/div/div[2]/div/div/div[3]/div[1]

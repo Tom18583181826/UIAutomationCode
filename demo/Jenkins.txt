@@ -1,0 +1,10 @@
+一.下载Tomcat（http://tomcat.apache.org/）
+    Tomcat是针对java的一个开源中间件服务器(容器)，基于java的web项目可以通过Tomcat运行。
+    通常需要将web项目放到webapps/目录下。进入bin/目录，双击startup.bat文件，启动Tomcat服务器，web项目就可以运行起来了
+二.下载Jenkins(https://jenkins.io/)
+    注：安装路径一定要选择Tomcat的webapps/目录
+三.安装配置Jenkins
+    1.Jenkins安装完成后会自动启动Tomcat，并通过默认浏览器打开网址http://localhost:8080/(也可以进入bin/目录，双击startup.bat文件，启动Tomcat服务器)
+    2.根据提示打开.../initialAdminPassword文件查看密码。将密码填写到Administrator password输入框中，单击Continue按钮
+    3.根据提示选择需要的插件（可以默认选择），单击install
+    4.创建管理员账号，单击save and continue

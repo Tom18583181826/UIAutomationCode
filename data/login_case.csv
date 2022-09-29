@@ -1,0 +1,3 @@
+id,title,params,expect
+tc001,µÇÂ¼³É¹¦,ParamsSuccess,ExpectSuccess
+tc002,µÇÂ¼Ê§°Ü,ParamsFail,ExpectFail

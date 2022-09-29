@@ -1,0 +1,14 @@
+{
+  "ParamsSuccess": {
+    "username": "9527",
+    "password": "a123456",
+    "verify_code": "1111"
+  },
+  "ExpectSuccess": "9527",
+  "ParamsFail": {
+    "username": "9527",
+    "password": "123456",
+    "verify_code": "1111"
+  },
+  "ExpectFail": "密码输入错误"
+}

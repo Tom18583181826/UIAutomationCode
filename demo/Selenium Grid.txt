@@ -1,0 +1,31 @@
+Selenium Grid：主要用于自动化测试的分布式执行。
+
+Selenium Server环境配置
+1.下载Selenium Server---http://www.seleniumhq.org/download/
+2.下载JDK(JAVA开发工具包)，配置JAVA环境
+    注：java命令用于运行class字节码文件，javac命令可以将java源文件编译为class文件
+3.运行Selenium Server
+    切换到Selenium Server所在目录并启动，在Win命令提示符(或Linux终端)下启动Selenium Server
+    java -jar selenium-server-standalone-版本号.jar
+
+Selenium Grid工作原理
+    当测试用例需要验证的环境比较多时，可以通过Grid控制测试用例在不同的环境下运行。Grid主节点可以根据测试用例中指定的平台配置信息把测试用例转发给符合条件的代理节点。
+    java -jar selenium-server-standalone-版本号.jar -role hub(启动一个主节点，默认端口号是4444)
+    java -jar selenium-server-standalone-版本号.jar -role node(启动一个代理节点，默认端口号是5555，想在同一台主机上启动多个node，需要指定不同的端口号)
+    java -jar selenium-server-standalone-版本号.jar -role node -port 5556
+
+    通过浏览器访问Grid的控制台，地址为http://127.0.0.1:4444/grid/console，可以查看启动的节点信息。
+
+    想在其他主机启动node,需要满足
+    1.本地Hub所在主机与远程node所在主机之间可以用ping命令通信
+    2.远程主机必须安装java环境，因为需要运行Selenium Server
+    3.远程主机必须安装测试用例需要的浏览器及驱动文件，驱动文件需要设置环境变量
+    java -jar selenium-server-standalone-版本号.jar -role node -port 5556 -hub http://172.16.10.66:4444/grid/register(-hub参数指定Hub所在主机的IP地址)
+
+Selenium Grid应用
+    1.Remote实例
+    from selenium。webdriver import Remote, DesiredCapabilities
+    driver = Remote(desired_capabilities=DesiredCapabilities.CHROME.copy())
+    ......(注：上行代码引用了DesiresCapabilities类中Chrome浏览器的配置，运行即可启动Chrome浏览器)
+    2.Grid执行过程
+    Selenium Remote()类---Grid Hub节点---Grid Node节点---WebDriver驱动---浏览器

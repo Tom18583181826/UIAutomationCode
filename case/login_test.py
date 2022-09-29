@@ -115,7 +115,7 @@ class BaiDuLoginTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    # "if __name__ == ‘————main__’："表示当模块被直接运行是，下面的代码块将被运行；
+    # "if __name__ == '__main__'："表示当模块被直接运行时，下面的代码块将被运行；
     # 当模块被其他程序文件调用时，下面的代码块不被运行
     unittest.main(verbosity=2)
     # verbosity = 2:输出更详细的执行日志

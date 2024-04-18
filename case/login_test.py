@@ -1,7 +1,7 @@
 import time
 import unittest
 # 1.unittest单元测试框架创建的测试类必须继承unittest.TestCase类
-# 2.测试用例（方法）必须以“test”开头
+# 2.测试用例（方法）必须以“test”开头，后面可以跟字母、数字、下划线
 from parameterized import parameterized
 from common.get_log import GetLog
 from common.read_excel import ReadExcel

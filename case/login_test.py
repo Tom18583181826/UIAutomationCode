@@ -1,7 +1,7 @@
 import time
 import unittest
 # 1.unittest单元测试框架创建的测试类必须继承unittest.TestCase类
-# 2.测试用例（方法）必须以“test”开头
+# 2.测试用例（方法）必须以“test”开头，后面可以跟字母、数字、下划线
 from parameterized import parameterized
 from common.get_log import GetLog
 from common.read_excel import ReadExcel
@@ -60,7 +60,7 @@ class BaiDuLoginTest(unittest.TestCase):
             # 异常的抛出机制：
             # 1.如果在运行时发生异常，那么解释器会查找相应的处理语句(称为handler)
             # 2.如果在当前函数里没有找到相应的处理语句，那么解释器会将异常传递给上层的调用函数，看看哪里能不能处理
-            # 3.如果在最外层函数(全局函数main())也没有找到，那么解释器会退出，同时打印Traceback，以便用户找到错误产生的原因
+            # 3.如果在最外层函数(全局函数main())也没有找到，那么解释器会退出，同时打印Traceback(回溯)，以便用户找到错误产生的原因
             username = params["username"]
             password = params["password"]
             verify_code = params["verify_code"]

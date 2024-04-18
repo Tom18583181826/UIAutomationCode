@@ -57,10 +57,12 @@ class Base:
             # 如果包含可变数字，就不要使用name定位
             locator = (By.NAME, selector_value)
         elif selector_type == "tag" or selector_type == "TAG_NAME":
-            # 通过元素的标签名来定位元素
+            # 通过元素的标签名来定位元素，使用这种方式定位单个元素时一定要检查清楚页面中是否只有一个目标标签
+            # tag_name的方式一般用find_elements_by_tag_name来找一组元素,元素会保存在列表中
             locator = (By.TAG_NAME, selector_value)
         elif selector_type == "class" or selector_type == "CLASS_NAME":
             # HTML规定，class用来指定元素的类名，class属性值如果有由空格隔开的多部分内容值，定位时可以选择其中的一部分值，也可以用点号或者逗号替代空格进行连接
+            # class在html中表示样式，如果样式相同或相近要注意是否多个元素class一样
             locator = (By.CLASS_NAME, selector_value)
         elif selector_type == "link" or selector_type == "LINK_TEXT":
             # 通过元素标签对之间的文字信息来定位元素
@@ -69,12 +71,38 @@ class Base:
             # 通过元素标签对之间的部分文字（这部分文字需要唯一标识这个链接）定位元素
             locator = (By.PARTIAL_LINK_TEXT, selector_value)
         elif selector_type == "x" or selector_type == "XPATH":
+            # 精确属性值定位 //标签名[@属性名=属性值]
+            #       说明：属性名可以是id、name、class或其他任意属性，多个属性之间用逻辑运算符(and、or、not)连接
+            #       例如：//input[@id="kw" and @name="wk"]
+            # 模糊属性值定位 //标签名[contains(@属性名，属性部分值)]
+            # 精确文本定位 //标签名[text()=标签文本值]
+            #       例如：//*[text()="视频"]
+            # 模糊文本定位 //标签名[contains(text(),部分标签文本值)]
+            # 起始属性值定位 //标签名[starts-with(@属性名，属性开头部分值)]
             locator = (By.XPATH, selector_value)
         elif selector_type == "css" or selector_type == "CSS_SELECTOR":
+            # id属性值定位：#属性值
+            # class属性值定位：.属性值
+            # 标签名+id组合定位：标签名#属性值
+            # 标签名+class组合定位：标签名.属性值
+            # 标签名+其他属性组合定位：标签名[属性名=属性值]
+            # 多个属性组合定位：标签名[属性名1=属性值1][属性名2=属性值2]
+            # 模糊匹配      标签名[属性名*=属性值]   属性值包含部分内容
+            #              标签名[属性名^=属性值]   属性值以什么开头
+            #              标签名[属性名$=属性值]   属性值以什么结尾
+            # nth-child(n) 如果当前标签中没有其他属性可以选择且同时存在多个相同标签
+            #              可通过选择器匹配父元素的第n个子元素，元素类型没有限制
+            # last-child   指定父元素节点下的最后一个子标签
             locator = (By.CSS_SELECTOR, selector_value)
         else:
             raise TypeError(selector_type + "是无效的，请输入正确的定位方式！！！")
         return locator
+
+    # XPath和CSS定位的差异：
+    #       1.在XPath中路径用/表示，在CSS中用>表示
+    #       2.如果要根据标签名定位，在XPath中用“//标签名”表示，在CSS中用“标签名”表示
+    #       3.如果要指定属性，XPath的格式是[@属性名=属性值]，CSS的格式是：[属性名=属性值]
+    #       4，多个属性XPath使用逻辑运算符连接
 
     # 设置显式等待控制查找元素的时间---单个元素
     def locator_element(self, selector):
@@ -105,6 +133,8 @@ class Base:
         locator = self.selector_to_locator(selector)
         if locator is not None:
             elements = self.wd.find_elements(*locator)
+            # 定位多个元素使用elements,数据存在于列表中
+            # elements[3].click():可以通过下标索引选择具体操作那个元素
             # 位置参数---在参数名之前使用1个星号，让函数接受任意多的位置参数
             # 关键字参数---在参数名之前使用2个星号，让函数支持任意多的关键字参数
         else:
@@ -216,6 +246,10 @@ class Base:
     def get_page_title(self):
         return self.wd.title
 
+    # 获取元素的文本信息，可以用于断言
+    def get_page_text(self,selector):
+        return self.locator_element(selector).text
+
     # 获取当前页面的URL，可以用于断言
     def get_page_url(self):
         return self.wd.current_url
@@ -253,6 +287,7 @@ class Base:
 
     # 调用JavaScript，可以实现浏览器滚动条的拖动和textarea文本框的输入等操作
     def transfer_js(self, js, args=None):
+        # js='arguments[0].scrollIntoView()'  滑动滚动条的js脚本
         self.wd.execute_script(js, args)
 
     # 处理H5视频播放

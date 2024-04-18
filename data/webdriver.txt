@@ -1,0 +1,38 @@
+浏览器操作
+forward()    浏览器页面的前进
+back()       浏览器页面的后退
+             操作浏览器前进和后退时需注意是否有历史操作
+minimize_window()   浏览器窗口最小化
+get_window_size()   获取窗口大小
+set_window_size()   设置窗口大小
+refresh()           刷新窗口
+================================================================
+键盘操作
+send_keys(Keys.CONTROL,"a") 全选
+send_keys(Keys.CONTROL,"c") 复制
+send_keys(Keys.CONTROL,"v") 粘贴
+send_keys(Keys.ENTER)       回车
+================================================================
+鼠标操作
+ActionChains的执行原理：当调用ActionChains的方法时不会立即执行，而是会将
+所有的操作存放在一个队列中，当调用perfrom()方法时队列中的事件才会依次执行
+context_click() 右击
+double_click()  双击
+move_to_element()   鼠标悬停在一个元素上
+click_and_hold()    按下鼠标左键在一个元素上
+==================================================================
+句柄操作
+current_window_handle   获取当前窗口的句柄
+window_handles          获取所有窗口的句柄
+switch_to.window(*[n])  切换到新窗口
+===================================================================
+等待
+implicitly_wait()   隐式等待，为浏览器对象创建一个等待时间要拿到元素才会停止等待，
+                    作用于当前模块所有需要等待的元素
+===================================================================
+随机数(random)模块
+random.choice(population,weights=None,cum_weights=None,k)  从非空序列中随机选取一个数据并返回，该序列可以是list、tuple、str、set
+            population:集群
+            weights：相对权重，可不填
+            cum_weights：累加权重，可不填
+            k:选取次数，默认一次，可不填

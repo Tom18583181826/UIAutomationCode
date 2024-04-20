@@ -187,8 +187,9 @@ class Base:
     def second_locator_element(self, selector1, selector2):
         locator1 = self.selector_to_locator(selector1)
         locator2 = self.selector_to_locator(selector2)
-        eles = self.wd.find_element(*locator1).find_elements(*locator2)
+        eles = self.wd.find_elements(*locator1).find_elements(*locator2)
         random.choice(eles).click()
+        # random.choice()从非空序列中随机选取一个数值并返回
 
     # 获取元素的尺寸
     def get_element_size(self, selector):

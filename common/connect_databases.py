@@ -4,7 +4,7 @@ from pymysql import cursors
 
 class ConnectDatabases:
     # 创建数据库连接
-    def __init__(self, host="127.0.0.1", user="root", password="mima=1509957150", database="guest", charset="utf8",
+    def __init__(self, host="127.0.0.1", user="root", password="123456", database="guest", charset="utf8",
                  port=3306):
         self.connect = pymysql.connect(
             # connect():建立数据库连接

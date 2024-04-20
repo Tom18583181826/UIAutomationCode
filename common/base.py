@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class Base:
     def __init__(self, browser_type, url):
         # 方法与函数的区别是，方法的第一个参数必须声明，一般习惯是命名为“self”，
-        # 但在调用这个方法时并不需要为该函数设置数值00
+        # 但在调用这个方法时并不需要为该函数设置数值
         if browser_type == "Chrome":
             self.wd = webdriver.Chrome()
         elif browser_type == "Firefox":
@@ -61,7 +61,8 @@ class Base:
             # tag_name的方式一般用find_elements_by_tag_name来找一组元素,元素会保存在列表中
             locator = (By.TAG_NAME, selector_value)
         elif selector_type == "class" or selector_type == "CLASS_NAME":
-            # HTML规定，class用来指定元素的类名，class属性值如果有由空格隔开的多部分内容值，定位时可以选择其中的一部分值，也可以用点号或者逗号替代空格进行连接
+            # HTML规定，class用来指定元素的类名，class属性值如果有由空格隔开的多部分内容值，定位时可以选择其中的一部分值，
+            # 也可以用点号或者逗号替代空格进行连接
             # class在html中表示样式，如果样式相同或相近要注意是否多个元素class一样
             locator = (By.CLASS_NAME, selector_value)
         elif selector_type == "link" or selector_type == "LINK_TEXT":
@@ -247,7 +248,7 @@ class Base:
         return self.wd.title
 
     # 获取元素的文本信息，可以用于断言
-    def get_page_text(self,selector):
+    def get_page_text(self, selector):
         return self.locator_element(selector).text
 
     # 获取当前页面的URL，可以用于断言

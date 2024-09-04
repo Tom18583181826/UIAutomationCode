@@ -1,5 +1,5 @@
 查询：
-select distinct 字段名1,字段名2,count(字段名3)
+select distinct 字段名1,字段名2,count(字段名3),sum(字段名4*字段名5)
 from 表名1 (join 表名2 on 判断条件)
 where binary 筛选条件
 group by 分组的字段名
